@@ -13,10 +13,10 @@ class SignupRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return true; //permite que cualquier usuario pueda realizar esta solicitud, ya que es para el registro de nuevos usuarios
     }
 
-    public function messages():array
+    public function messages():array //personaliza los mensajes de error para cada regla de validación
     {
         return [
             'name.required' => 'El campo nombre es obligatorio',
@@ -37,7 +37,7 @@ class SignupRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules(): array //define las reglas de validación para cada campo del formulario de registro
     {
         return [
             'name' => ['required', 'string'],
