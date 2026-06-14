@@ -29,9 +29,8 @@
             value= "{{ old('email') }}" 
         />
     </div>
-    @error('email')
-        <p class="text-red-600">{{ $message }}</p>
-    @enderror
+    
+    <x-input-error field="email" />  {{--componente para mostrar el error del campo email --}}
 
     <div class="flex flex-col gap-2">
         <div class="flex  items-center justify-between">
@@ -46,9 +45,7 @@
             tabindex="2" 
         />
     </div>
-    @error('password')
-             <p class="text-red-600">{{ $message }}</p>
-            @enderror
+    <x-input-error field="password" /> {{--componente para mostrar el error del campo password --}}
     <input 
         type="submit" 
         value='Iniciar Sesión'
