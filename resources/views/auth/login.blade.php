@@ -5,24 +5,25 @@
 @endsection
 
 @section('title2')
-    <h1 class="text-4xl font-bold text-center">Iniciar Sesión</h1>
+    <h1 class="text-3xl font-bold text-center">Iniciar Sesión</h1>
 @endsection
 
 
 @section('auth-contents')
 
-@if (session('error')) <!-- Verifica si hay un mensaje de error en la sesión, lo que indicaría que las credenciales de inicio de sesión son incorrectas --> 
-   <p class="my-10 text-center border border-red-400 bg-red-100 text-red-700 py-3 text-sm">{{ session('error') }}</p>
+@if (session('error')) <!-- Verifica si hay un mensaje de error en la sesión, lo que indicaría que las credenciales de inicio de sesión son incorrectas -->
+     <x-alert type="error" :message="session('error')" />   <!--  Props con ":" lo hace dinamico -->
+
 @endif
 
 <form method="POST" action="{{ route('login.store') }}" class="mt-14 space-y-5" novalidate>
     <div class="flex flex-col gap-2">
-        <label class="font-bold text-2xl" for="email">Email</label>
+        <label class="font-bold text-sm" for="email">Email</label>
 
         <input 
             id="email" 
             type="email" 
-            placeholder="Email de Registro"
+            placeholder="Email de registro"
             class="w-full border border-gray-300 p-3 rounded-lg" 
             name="email" 
             tabindex="1" 
@@ -30,22 +31,22 @@
         />
     </div>
     
-    <x-input-error field="email" />  {{--componente para mostrar el error del campo email --}}
+     <x-input-error field="email" />
 
     <div class="flex flex-col gap-2">
         <div class="flex  items-center justify-between">
-            <label class="font-bold text-2xl">Password</label>
+            <label class="font-bold text-sm">Password</label>
             <a href="#" class="text-indigo-950" tabindex="3">¿Olvidaste tu Contraseña?</a>
         </div>
         <input 
             type="password" 
-            placeholder="Password de Registro" 
+            placeholder="Password de registro" 
             class="w-full border border-gray-300 p-3 rounded-lg"
             name="password" 
             tabindex="2" 
         />
     </div>
-    <x-input-error field="password" /> {{--componente para mostrar el error del campo password --}}
+    <x-input-error field="password" /> 
     <input 
         type="submit" 
         value='Iniciar Sesión'

@@ -18,9 +18,11 @@ class LoginController extends Controller
         $data = $request->validated(); //obtiene los datos validados del formulario de inicio de sesión utilizando el método validated() del objeto SignInRequest, que se encarga de validar los datos según las reglas definidas en ese FormRequest
 
 
-        if(!Auth::attempt($data)){
+        if(!Auth::attempt($data,true)){
             return back()->with('error','Credenciales Incorrectas'); //Regresamos a la pagina anterior, el error se consume con "session" en la vista
         }
+
+        return redirect()->route('dashboard');//redirigimos a la ruta del dashboard si las credenciales son correctas
 
     }
 

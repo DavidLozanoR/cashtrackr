@@ -2,7 +2,7 @@
 
 @section('contents')
 
-    <main class="max-w-2xl mt-10 mx-auto p-10 shadow-lg">
+    <main class="max-w-xl w-full mt-10 mx-auto p-8 sm:p-10 shadow-lg rounded-xl">
     @yield('title2')
 
     @yield('auth-contents')

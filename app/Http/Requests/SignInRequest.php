@@ -18,8 +18,11 @@ class SignInRequest extends FormRequest
     public function messages(): array //personalizamos el mensaje de error de email
     {
         return [
-            'email.exists'=> 'No existe una cuenta registrada con este correo electrónico' //mensaje de error personalizado para la regla de validación exists en el campo de correo electrónico, que se mostrará si el correo electrónico ingresado no existe en la base de datos
-        ];
+            'email.exists'=> 'No existe una cuenta registrada con este correo electrónico', //mensaje de error personalizado para la regla de validación exists en el campo de correo electrónico, que se mostrará si el correo electrónico ingresado no existe en la base de datos
+            'email.email' => 'El campo email debe ser una dirección de correo electrónico válida',
+            'email.required' => 'El campo email es obligatorio',
+            'password.required' => 'El campo password es obligatorio'
+            ];
     }
 
     /**

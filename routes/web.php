@@ -1,9 +1,11 @@
 <?php
 
+use \Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +28,14 @@ Route::get('/email/verify/{id}/{hash}',function(EmailVerificationRequest $reques
 Route::get('/email/verify', function() {
     return view('auth.verify-email'); //vista que muestra un mensaje indicando al usuario que debe verificar su correo electrónico para completar el registro
 })->middleware('auth')->name('verification.notice');//middleware auth para asegurarnos de que el usuario esté autenticado antes de mostrar la página de verificación, nombre de ruta verification.notice para redireccionar a esta página después de registrarse
+
+Route::post('/email/verifica', function(Request $request) {
+    $request->user()->sendEmailVerificationNotification(); //envía un correo electrónico de verificación al usuario autenticado utilizando el método sendEmailVerificationNotification() del modelo User
+
+    return back()->with('success','Se ha enviado un nuevo enlace de verificación a tu correo electrónico.'); //redirecciona a la página anterior con un mensaje de éxito indicando que se ha enviado un nuevo enlace de verificación al correo electrónico del usuario
+})->middleware(['auth', 'throttle:1,1'])->name('verification.send'); //middleware auth para asegurarnos de que el usuario esté autenticado antes de enviar el correo electrónico de verificación, middleware throttle para limitar la cantidad de solicitudes que un usuario puede hacer en un período de tiempo determinado (1 solicitudes por minuto en este caso), nombre de ruta verification.send para generar la URL para enviar el correo electrónico de verificación
+
+
 
 Route::get('/dashboard', function() {
     return view('dashboard');

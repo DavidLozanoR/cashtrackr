@@ -6,7 +6,7 @@
 
 @endsection
 @section('title2')
-    <h1 class="text-4xl font-bold text-center">Crear Cuenta</h1>
+    <h1 class="text-3xl font-bold text-center">Crear Cuenta</h1>
 @endsection
 
 
@@ -14,7 +14,7 @@
 <form method="POST" action="{{ route('register.store') }}" class="mt-14 space-y-5" novalidate>
     @csrf    
 <div class="space-y-2">
-        <label class="font-bold text-2xl block" for="name">Nombre</label>
+        <label class="font-bold text-sm block" for="name">Nombre</label>
 
         <input 
             id="name" 
@@ -31,7 +31,7 @@
 
 
     <div class="space-y-2">
-        <label class="font-bold text-2xl block" for="email">Email</label>
+        <label class="font-bold text-sm block" for="email">Email</label>
 
         <input 
             id="email" 
@@ -45,7 +45,7 @@
      <x-input-error field="email" />
 
     <div class="space-y-2">
-        <label class="font-bold text-2xl block">Password</label>
+        <label class="font-bold text-sm block">Password</label>
 
         <input 
             type="password" 
@@ -58,7 +58,7 @@
     </div>
 
     <div class="space-y-2">
-        <label class="font-bold text-2xl block" for="password_confirmation">Repetir Password</label>
+        <label class="font-bold text-sm block" for="password_confirmation">Repetir Password</label>
 
         <input 
             type="password" 
