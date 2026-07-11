@@ -3,6 +3,7 @@
 use \Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ Route::post('/auth/register',[RegisterController::class,'store'])->name('registe
 
 Route::get('/auth/login',[LoginController::class,'index'])->name('login');
 Route::post('/auth/login',[LoginController::class,'store'])->name('login.store');// ruta para procesar el formulario de inicio de sesión
+
+Route::post('/auth/logout',[LogoutController::class,'store'])->name('logout.store'); //ruta para cerrar sesión del usuario autenticado
+
+
 
 Route::get('/email/verify/{id}/{hash}',function(EmailVerificationRequest $request){
     $request->fulfill(); //verifica el enlace de verificación, si es válido marca el correo electrónico del usuario como verificado en la base de datos

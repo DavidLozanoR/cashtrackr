@@ -13,11 +13,14 @@
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
+            {{-- IImportamos tailwind elements --}}
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+
     </head>
 <body>
 
     <header class="bg-purple-950 py-5">
-        <div class="max-w-6xl mx-auto flex flec-col lg:flex-row items-center
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center
             lg:justify-between " >
             <div class = "w-32">
                 <img src="{{ asset('img/logo.svg') }}" alt="CashTrackr Logo" class="w-full block" /> 
@@ -26,7 +29,8 @@
             <nav class="flex flex-col lg:flex-row items-center gap-4">
                 @auth
                     <p class="text-white text-xl">Bienvenido <span class="font-bold">{{ auth()->user()->name }}</span></p>
-                @else
+                    <x-dropdown-menu />
+                    @else
                     @if (Route::has('login'))
                 
                         <a href="{{ route('login') }}" class="text-white font-bold uppercase p-2">Iniciar Sesión</a>
